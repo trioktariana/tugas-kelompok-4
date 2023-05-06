@@ -83,7 +83,7 @@
                 $.ajax({
                     type: "POST",
                     url: "<?php echo base_url('Kuesioner/process'); ?>",
-                    data: $("form").serialize(), // <--- THIS IS THE CHANGE
+                    data: $("form").serialize(),
                     dataType: "html",
                     success: function(result){
                         var data = JSON.parse(result);
