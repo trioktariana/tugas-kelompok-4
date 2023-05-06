@@ -12,12 +12,12 @@ class DimensiModel extends CI_Model
     {
         return [
             ['field' => 'dimensi',
-            'label' => 'Dimensi',
+            'label' => 'dimensi',
             'rules' => 'required'],
 
             ['field' => 'bobot',
-            'label' => 'Bobot',
-            'rules' => ['numeric', 'required']],
+            'label' => 'bobot',
+            'rules' => 'numeric|required'],
         ];
     }
 
@@ -31,20 +31,14 @@ class DimensiModel extends CI_Model
         return $this->db->get_where($this->_table, ["id_dimensi" => $id])->row();
     }
 
-    public function save()
+    public function save($dimensi)
     {
-        $post = $this->input->post();
-        $this->dimensi = $post["dimensi"];
-        $this->bobot = $post["bobot"];
-        return $this->db->insert($this->_table, $this);
+        return $this->db->insert($this->_table, $dimensi);
     }
 
-    public function update()
+    public function update($id_dimensi, $dimensi)
     {
-        $post = $this->input->post();
-        $this->dimensi = $post["dimensi"];
-        $this->bobot = $post["bobot"];
-        return $this->db->update($this->_table, $this, array('id_dimensi' => $post['id_dimensi']));
+        return $this->db->update($this->_table, $dimensi, ['id_dimensi' =>  $id_dimensi]);
     }
 
     public function delete($id)

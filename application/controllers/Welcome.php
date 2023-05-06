@@ -9,10 +9,12 @@ class Welcome extends CI_Controller {
 		if(!$this->session->userdata('isLogin')){
 		  redirect("Login");
 		}
+		$this->load->model('JawabanModel');
 	}
 
 	public function index()
 	{
-		$this->load->view('dashboard');
+		$data = $this->JawabanModel->getDashboardData();
+		$this->load->view('dashboard', $data);
 	}
 }

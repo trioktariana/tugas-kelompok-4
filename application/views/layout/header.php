@@ -91,25 +91,25 @@ IT BALANCED SCORECARD">
 						<li>
 							<a class="dropmenu" href="#"><i class="icon-envelope"></i><span class="hidden-tablet"> Dimensi</span> <span class="label label-important">  2 </span></a>
 							<ul>
-								<li><a class="submenu" href="lihatdimensi.php"><i class="icon-file-alt"></i><span class="hidden-tablet"> Lihat Data</span></a></li>
-								<li><a class="submenu" href="tambahdimensi.php"><i class="icon-file-alt"></i><span class="hidden-tablet"> Tambah Data</span></a></li>
+								<li><a class="submenu" href="<?php echo base_url('Dimensi'); ?>"><i class="icon-file-alt"></i><span class="hidden-tablet"> Lihat Data</span></a></li>
+								<li><a class="submenu" href="<?php echo base_url('Dimensi/create'); ?>"><i class="icon-file-alt"></i><span class="hidden-tablet"> Tambah Data</span></a></li>
 							</ul>	
 						</li>
 						<li>
 							<a class="dropmenu" href="#"><i class="icon-tasks"></i><span class="hidden-tablet"> Pertanyaan</span> <span class="label label-important">  2 </span></a>
 							<ul>
-								<li><a class="submenu" href="lihatpertanyaan.php"><i class="icon-file-alt"></i><span class="hidden-tablet"> Lihat Data</span></a></li>
-								<li><a class="submenu" href="tambahpertanyaan.php"><i class="icon-file-alt"></i><span class="hidden-tablet"> Tambah Data</span></a></li>
+								<li><a class="submenu" href="<?php echo base_url('Pertanyaan'); ?>"><i class="icon-file-alt"></i><span class="hidden-tablet"> Lihat Data</span></a></li>
+								<li><a class="submenu" href="<?php echo base_url('Pertanyaan/create'); ?>"><i class="icon-file-alt"></i><span class="hidden-tablet"> Tambah Data</span></a></li>
 							</ul>	
 						</li>
 						<li>
 							<a class="dropmenu" href="#"><i class="icon-folder-open"></i><span class="hidden-tablet"> Pengguna</span> <span class="label label-important">  2 </span></a>
 							<ul>
-								<li><a class="submenu" href="lihatpengguna.php"><i class="icon-file-alt"></i><span class="hidden-tablet"> Lihat Data</span></a></li>
-								<li><a class="submenu" href="tambahpengguna.php"><i class="icon-file-alt"></i><span class="hidden-tablet"> Tambah Data</span></a></li>
+								<li><a class="submenu" href="<?php echo base_url('Pengguna'); ?>"><i class="icon-file-alt"></i><span class="hidden-tablet"> Lihat Data</span></a></li>
+								<li><a class="submenu" href="<?php echo base_url('Pengguna/create'); ?>"><i class="icon-file-alt"></i><span class="hidden-tablet"> Tambah Data</span></a></li>
 							</ul>	
 						</li>
-						<li><a href="kuesioner.php"><i class="icon-edit"></i><span class="hidden-tablet"> Jawab Kuesioner</span></a></li>
+						<li><a href="<?php echo base_url('Kuesioner'); ?>"><i class="icon-edit"></i><span class="hidden-tablet"> Jawab Kuesioner</span></a></li>
 						
 					</ul>
 				</div>
