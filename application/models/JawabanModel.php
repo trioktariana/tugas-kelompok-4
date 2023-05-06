@@ -22,57 +22,32 @@ class JawabanModel extends CI_Model
         ];
     }
 
-    public function getAll()
+    public function save($jawaban)
     {
-        return $this->db->get($this->_table)->result();
-    }
-    
-    public function getById($id)
-    {
-        return $this->db->get_where($this->_table, ["product_id" => $id])->row();
+        return $this->db->insert($this->_table, $jawaban);
     }
 
-    public function save()
+    public function delete($username)
     {
-        $post = $this->input->post();
-        $this->id_kuesioner = $post["id_kuesioner"];
-        $this->jawaban = $post["jawaban"];
-        $this->username = $post["username"];
-        return $this->db->insert($this->_table, $this);
+        return $this->db->delete($this->_table, array("username" => $username));
     }
 
-    public function update()
-    {
-        $post = $this->input->post();
-        $this->id_kuesioner = $post["id_kuesioner"];
-        $this->jawaban = $post["jawaban"];
-        $this->username = $post["username"];
-        return $this->db->update($this->_table, $this, array('id_kuesioner' => $post['id_kuesioner'],'username' => $post['username']));
+    public function getDataDimensi($dimensi){
+        return $this->db->query("SELECT jawaban,
+                                        CASE jawaban
+                                        WHEN 'A' THEN Count(jawaban)*1 
+                                        WHEN 'B' THEN COUNT(jawaban)*2 
+                                        WHEN 'C' THEN COUNT(jawaban)*3 
+                                        WHEN 'D' THEN COUNT(jawaban)*4 
+                                        WHEN 'E' THEN COUNT(jawaban)*5 
+                                        END as jumlah
+                                        FROM jawaban,tbkuesioner
+                                        WHERE (tbkuesioner.id_kuesioner=jawaban.id_kuesioner) AND
+                                        (tbkuesioner.id_dimensi='$dimensi')
+                                        GROUP BY jawaban");
     }
 
-    public function getDashboardData(){
-        $dim1 = $this->db->query("SELECT jawaban, CASE jawaban WHEN 'A' THEN Count(jawaban)*1 WHEN 'B' THEN COUNT(jawaban)*2 WHEN 'C' THEN COUNT(jawaban)*3 WHEN 'D' THEN COUNT(jawaban)*4 WHEN 'E' THEN COUNT(jawaban)*5 END as jumlah FROM jawaban,tbkuesioner WHERE (tbkuesioner.id_kuesioner=jawaban.id_kuesioner) AND (tbkuesioner.id_dimensi=1) GROUP BY jawaban");
-        $dim2 = $this->db->query("SELECT jawaban, CASE jawaban WHEN 'A' THEN Count(jawaban)*1 WHEN 'B' THEN COUNT(jawaban)*2 WHEN 'C' THEN COUNT(jawaban)*3 WHEN 'D' THEN COUNT(jawaban)*4 WHEN 'E' THEN COUNT(jawaban)*5 END as jumlah FROM jawaban,tbkuesioner WHERE (tbkuesioner.id_kuesioner=jawaban.id_kuesioner) AND (tbkuesioner.id_dimensi=2) GROUP BY jawaban");
-        $dim3 = $this->db->query("SELECT jawaban, CASE jawaban WHEN 'A' THEN Count(jawaban)*1 WHEN 'B' THEN COUNT(jawaban)*2 WHEN 'C' THEN COUNT(jawaban)*3 WHEN 'D' THEN COUNT(jawaban)*4 WHEN 'E' THEN COUNT(jawaban)*5 END as jumlah FROM jawaban,tbkuesioner WHERE (tbkuesioner.id_kuesioner=jawaban.id_kuesioner) AND (tbkuesioner.id_dimensi=3) GROUP BY jawaban");
-        $dim4 = $this->db->query("SELECT jawaban, CASE jawaban WHEN 'A' THEN Count(jawaban)*1 WHEN 'B' THEN COUNT(jawaban)*2 WHEN 'C' THEN COUNT(jawaban)*3 WHEN 'D' THEN COUNT(jawaban)*4 WHEN 'E' THEN COUNT(jawaban)*5 END as jumlah FROM jawaban,tbkuesioner WHERE (tbkuesioner.id_kuesioner=jawaban.id_kuesioner) AND (tbkuesioner.id_dimensi=4) GROUP BY jawaban"); 
-        return [
-            'corporate' => $dim1->result(),
-            'stakeholder' => $dim2->result(),
-            'operational' => $dim3->result(),
-            'future' => $dim4->result(),  
-        ];
-    }
-
-    public function getKPIData(){
-        $dim1 = $this->db->query("SELECT jawaban, CASE jawaban WHEN 'A' THEN Count(jawaban)*1 WHEN 'B' THEN COUNT(jawaban)*2 WHEN 'C' THEN COUNT(jawaban)*3 WHEN 'D' THEN COUNT(jawaban)*4 WHEN 'E' THEN COUNT(jawaban)*5 END as jumlah FROM jawaban,tbkuesioner WHERE (tbkuesioner.id_kuesioner=jawaban.id_kuesioner) AND (tbkuesioner.id_dimensi=1) GROUP BY jawaban");
-        $dim2 = $this->db->query("SELECT jawaban, CASE jawaban WHEN 'A' THEN Count(jawaban)*1 WHEN 'B' THEN COUNT(jawaban)*2 WHEN 'C' THEN COUNT(jawaban)*3 WHEN 'D' THEN COUNT(jawaban)*4 WHEN 'E' THEN COUNT(jawaban)*5 END as jumlah FROM jawaban,tbkuesioner WHERE (tbkuesioner.id_kuesioner=jawaban.id_kuesioner) AND (tbkuesioner.id_dimensi=2) GROUP BY jawaban");
-        $dim3 = $this->db->query("SELECT jawaban, CASE jawaban WHEN 'A' THEN Count(jawaban)*1 WHEN 'B' THEN COUNT(jawaban)*2 WHEN 'C' THEN COUNT(jawaban)*3 WHEN 'D' THEN COUNT(jawaban)*4 WHEN 'E' THEN COUNT(jawaban)*5 END as jumlah FROM jawaban,tbkuesioner WHERE (tbkuesioner.id_kuesioner=jawaban.id_kuesioner) AND (tbkuesioner.id_dimensi=3) GROUP BY jawaban");
-        $dim4 = $this->db->query("SELECT jawaban, CASE jawaban WHEN 'A' THEN Count(jawaban)*1 WHEN 'B' THEN COUNT(jawaban)*2 WHEN 'C' THEN COUNT(jawaban)*3 WHEN 'D' THEN COUNT(jawaban)*4 WHEN 'E' THEN COUNT(jawaban)*5 END as jumlah FROM jawaban,tbkuesioner WHERE (tbkuesioner.id_kuesioner=jawaban.id_kuesioner) AND (tbkuesioner.id_dimensi=4) GROUP BY jawaban"); 
-        return [
-            'corporate' => $dim1->result(),
-            'stakeholder' => $dim2->result(),
-            'operational' => $dim3->result(),
-            'future' => $dim4->result(),  
-        ];
+    public function getDimensiData($dimensi){
+        return $this->db->query("SELECT dimensi,bobot FROM tbdimensi where id_dimensi=$dimensi")->row();
     }
 }

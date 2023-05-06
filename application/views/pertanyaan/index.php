@@ -6,14 +6,14 @@
         <a href="template.php">Home</a> 
         <i class="icon-angle-right"></i>
     </li>
-    <li><a href="#">Lihat Data Dimensi</a></li>
+    <li><a href="#">Lihat Data Pertanyaan</a></li>
 </ul>
 
 <!-- isi konten disini -->
 <div class="row-fluid sortable">		
     <div class="box span12">
         <div class="box-header" data-original-title>
-            <h2><i class="halflings-icon white user"></i><span class="break"></span>Dimensi</h2>
+            <h2><i class="halflings-icon white user"></i><span class="break"></span>Pertanyaan</h2>
             <div class="box-icon">
                 <a href="#" class="btn-setting"><i class="halflings-icon white wrench"></i></a>
                 <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
@@ -30,27 +30,28 @@
                 <thead>
                     <tr>
                         <th>No.</th>
+                        <th>Pertanyaan</th>
+                        <th>Variabel</th>
                         <th>Dimensi</th>
-                        <th>Bobot</th>
                         <th>Actions</th>
                     </tr>
                 </thead>   
                 <tbody>
                 <?php $no=1;
-                foreach ($dimensi as $datadms): ?>
+                foreach ($pertanyaan as $datatanya): ?>
                 <tr>
                     <td><?php echo $no ?></td>
-                    <td><?php echo $datadms->dimensi ?></td>
-                    <td class="center"><?php echo $datadms->bobot ?></td>
-                    
+                    <td><?php echo $datatanya->pertanyaan ?></td>
+                    <td><?php echo $datatanya->variabel ?></td>
+                    <td><?php echo $datatanya->dimensi ?></td>
                     <td class="center">
-                        <a class="btn btn-success" href="<?php echo base_url('Dimensi/view/') . $datadms->id_dimensi; ?>">
+                        <a class="btn btn-success" href="<?php echo base_url('Pertanyaan/view/') . $datatanya->id_kuesioner; ?>">
                             <i class="halflings-icon white zoom-in"></i>  
                         </a>
-                        <a class="btn btn-info" href="<?php echo base_url('Dimensi/edit/') . $datadms->id_dimensi; ?>">
+                        <a class="btn btn-info" href="<?php echo base_url('Pertanyaan/edit/') . $datatanya->id_kuesioner; ?>">
                             <i class="halflings-icon white edit"></i>  
                         </a>
-                        <a class="btn btn-danger" onclick="deleteDimensi(<?php echo $datadms->id_dimensi; ?>)">
+                        <a class="btn btn-danger" onclick="deletePertanyaan(<?php echo $datatanya->id_kuesioner; ?>)">
                             <i class="halflings-icon white trash"></i> 
                         </a>
                     </td>
@@ -65,10 +66,10 @@
 
 <?php $this->load->view('layout/footer.php') ?>
 <script>
-    function deleteDimensi(e) {
+    function deletePertanyaan(e) {
         let text = "Are you sure want to delete?";
         if (confirm(text) == true) {
-            window.location.href = '<?php echo base_url('Dimensi/delete/')?>' + e;
+            window.location.href = '<?php echo base_url('Pertanyaan/delete/'); ?>' + e;
         } 
         // else {
         //     alert(e);

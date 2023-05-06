@@ -106,7 +106,7 @@ IT BALANCED SCORECARD">
 							<a class="dropmenu" href="#"><i class="icon-folder-open"></i><span class="hidden-tablet"> Pengguna</span> <span class="label label-important">  2 </span></a>
 							<ul>
 								<li><a class="submenu" href="<?php echo base_url('Pengguna'); ?>"><i class="icon-file-alt"></i><span class="hidden-tablet"> Lihat Data</span></a></li>
-								<li><a class="submenu" href="<?php echo base_url('Pengguna/create'); ?>"><i class="icon-file-alt"></i><span class="hidden-tablet"> Tambah Data</span></a></li>
+								<li><a class="submenu" href="<?php echo base_url('Pengguna/tambahPengguna'); ?>"><i class="icon-file-alt"></i><span class="hidden-tablet"> Tambah Data</span></a></li>
 							</ul>	
 						</li>
 						<li><a href="<?php echo base_url('Kuesioner'); ?>"><i class="icon-edit"></i><span class="hidden-tablet"> Jawab Kuesioner</span></a></li>

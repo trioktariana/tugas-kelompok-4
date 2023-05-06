@@ -30,67 +30,82 @@ class KuesionerModel extends CI_Model
             'rules' => 'required'],
 
             ['field' => 'pila',
-            'label' => 'Pilihan A',
+            'label' => 'Jawaban A',
             'rules' => 'required'],
 
             ['field' => 'pilb',
-            'label' => 'Pilihan B',
+            'label' => 'Jawaban B',
             'rules' => 'required'],
 
             ['field' => 'pilc',
-            'label' => 'Pilihan C',
+            'label' => 'Jawaban C',
             'rules' => 'required'],
 
             ['field' => 'pild',
-            'label' => 'Pilihan D',
+            'label' => 'Jawaban D',
             'rules' => 'required'],
 
             ['field' => 'pile',
-            'label' => 'Pilihan E',
+            'label' => 'Jawaban E',
             'rules' => 'required'],
         ];
     }
 
     public function getAll()
     {
-        return $this->db->get($this->_table)->result();
+        $this->db->select('*');
+        $this->db->from('tbkuesioner');
+        $this->db->join('tbdimensi', 'tbkuesioner.id_dimensi = tbdimensi.id_dimensi');
+        return $this->db->get()->result();
     }
 
     public function getById($id)
     {
-        return $this->db->get_where($this->_table, ["id_kuesioner" => $id])->row();
+        $this->db->select('*');
+        $this->db->from('tbkuesioner');
+        $this->db->join('tbdimensi', 'tbkuesioner.id_dimensi = tbdimensi.id_dimensi');
+        $this->db->where('id_kuesioner', $id);
+        return $this->db->get()->row();
     }
 
-    public function save()
+    public function save($pertanyaan)
     {
-        $post = $this->input->post();
-        $this->pertanyaan = $post["pertanyaan"];
-        $this->id_dimensi = $post["id_dimensi"];
-        $this->variabel = $post["variabel"];
-        $this->pila = $post["pila"];
-        $this->pilb = $post["pilb"];
-        $this->pilc = $post["pilc"];
-        $this->pild = $post["pild"];
-        $this->pile = $post["pile"];
-        return $this->db->insert($this->_table, $this);
+        return $this->db->insert($this->_table, $pertanyaan);
     }
 
-    public function update()
+    public function update($id_pertanyaan, $pertanyaan)
     {
-        $post = $this->input->post();
-        $this->pertanyaan = $post["pertanyaan"];
-        $this->id_dimensi = $post["id_dimensi"];
-        $this->variabel = $post["variabel"];
-        $this->pila = $post["pila"];
-        $this->pilb = $post["pilb"];
-        $this->pilc = $post["pilc"];
-        $this->pild = $post["pild"];
-        $this->pile = $post["pile"];
-        return $this->db->update($this->_table, $this, array('id_kuesioner' => $post['id_kuesioner']));
+        return $this->db->update($this->_table, $pertanyaan, ['id_kuesioner' =>  $id_pertanyaan]);
     }
 
     public function delete($id)
     {
         return $this->db->delete($this->_table, array("id_kuesioner" => $id));
+    }
+
+    public function getVariabels(){
+        return array('komitmen pimpinan',
+            'alokasi sumber daya',
+            'unit pengelola teknologi',
+            'kebijakan dan sistem insentif',
+            'Renstra dan peta jalan',
+            'Perencanaan dan pengorganisasian',
+            'Pengadaan dan penerapan',
+            'Pengelolaan dan pengembangan',
+            'Pemantauan dan penilaian',
+            'Dosen dan peneliti',
+            'Mahasiswa, unsur pemilik dan pimpinan',
+            'Manajemen, staf dan karyawan',
+            'Peningkatan kualitas',
+            'Efektivitas dan efisiensi',
+            'Transparansi manajemen',
+            'Utilitas sumber daya',
+            'Transformasi organisasi',
+            'Implementasi e-learning ',
+            'Berbagai sumber daya',
+            'Pendidikan terbuka',
+            'Pangkalan data terpadu',
+            'Jejaring internasional'
+        );
     }
 }
