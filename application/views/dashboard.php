@@ -6,7 +6,7 @@
         <a href="template.php">Home</a> 
         <i class="icon-angle-right"></i>
     </li>
-    <li><a href="#">Pengguna</a></li>
+    <li><a href="#">Dashboard</a></li>
 </ul>
 
     

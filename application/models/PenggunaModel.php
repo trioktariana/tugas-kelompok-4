@@ -59,4 +59,19 @@ class PenggunaModel extends CI_Model
     {
         return $this->db->delete($this->_table, array("user_id" => $id));
     }
+
+
+    public function login($username, $password)
+	{
+		$this->db->where('username', $username);
+		$query = $this->db->get($this->_table);
+		$user = $query->row();
+
+		// cek apakah user sudah terdaftar?
+		if (!$user) {
+			return FALSE;
+		}
+
+		return $user;
+	}
 }

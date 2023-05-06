@@ -58,9 +58,13 @@ IT BALANCED SCORECARD">
 						<a href="#"><i class="halflings-icon cog"></i></a>
 					</div>
 					<h2>Masukkan username dan password</h2>
-					<form class="form-horizontal" action="login.php" method="post">
+					<form class="form-horizontal" action="<?php echo base_url('Login/processLogin'); ?>" method="post">
 						<fieldset>
-							
+                        <?php if ($this->session->flashdata('msg')): ?>
+                            <div class="alert alert-warning">
+                                <?= $this->session->flashdata('msg') ?>
+                            </div>
+                        <?php endif; ?>
 							<div class="input-prepend" title="Username">
 								<span class="add-on"><i class="halflings-icon user"></i></span>
 								<input class="input-large span10" name="username" id="username" type="text" placeholder="type username"/>
@@ -113,6 +117,5 @@ IT BALANCED SCORECARD">
 
 		<script src="<?php echo base_url('assets/js/custom.js') ?>"></script>
 	<!-- end: JavaScript-->
-	
 </body>
 </html>

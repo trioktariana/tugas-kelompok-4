@@ -50,7 +50,7 @@ IT BALANCED SCORECARD">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="template.php"><span>IT-BSC</span></a>
+				<a class="brand" href="<?php echo base_url('/'); ?>"><span>IT-BSC</span></a>
 								
 				<!-- start: Header Menu -->
 				<div class="nav-no-collapse header-nav">
@@ -60,7 +60,7 @@ IT BALANCED SCORECARD">
 						<!-- start: User Dropdown -->
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								<i class="halflings-icon white user"></i> <?php echo 'test' ?>
+								<i class="halflings-icon white user"></i> <?php echo $this->session->userdata('username'); ?>
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
@@ -68,7 +68,7 @@ IT BALANCED SCORECARD">
  									<span>Account Settings</span>
 								</li>
 								
-								<li><a href="logout.php"><i class="halflings-icon off"></i> Logout</a></li>
+								<li><a href="<?php echo base_url('Login/logout'); ?>"><i class="halflings-icon off"></i> Logout</a></li>
 							</ul>
 						</li>
 						<!-- end: User Dropdown -->
@@ -87,7 +87,7 @@ IT BALANCED SCORECARD">
 			<div id="sidebar-left" class="span2">
 				<div class="nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs nav-stacked main-menu">
-						<li><a href="template.php"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Dashboard</span></a></li>	
+						<li><a href="<?php echo base_url('/'); ?>"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Dashboard</span></a></li>	
 						<li>
 							<a class="dropmenu" href="#"><i class="icon-envelope"></i><span class="hidden-tablet"> Dimensi</span> <span class="label label-important">  2 </span></a>
 							<ul>
